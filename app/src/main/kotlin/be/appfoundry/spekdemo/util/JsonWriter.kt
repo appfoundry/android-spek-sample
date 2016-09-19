@@ -1,3 +1,4 @@
+@file:JvmName("JsonUtil")
 package be.appfoundry.spekdemo.util
 
 import android.support.v4.util.ArrayMap

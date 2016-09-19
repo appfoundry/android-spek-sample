@@ -28,10 +28,8 @@ package be.vergauwen.simon.mockito1_kotlin
 
 import org.hamcrest.BaseMatcher
 import org.hamcrest.Description
-import org.mockito.InOrder
-import org.mockito.MockSettings
-import org.mockito.MockingDetails
-import org.mockito.Mockito
+import org.hamcrest.Matcher
+import org.mockito.*
 import org.mockito.internal.util.Decamelizer
 import org.mockito.invocation.InvocationOnMock
 import org.mockito.stubbing.Answer
@@ -51,12 +49,13 @@ inline fun <reified T : Any> argThat(noinline predicate: T.() -> Boolean) = Mock
     override fun matches(p0: Any?): Boolean = (p0 as T).predicate()
 
     override fun describeTo(p0: Description?) {
-        p0?.appendText(Decamelizer.decamelizeMatcher( T::class.java.simpleName))
+        p0?.appendText(Decamelizer.decamelizeMatcher(T::class.java.simpleName))
     }
 
 }) ?: createInstance(T::class)
 
-//inline fun <reified T : Any> argThat(noinline predicate: T.() -> Boolean) = Mockito.argThat<T> { it -> (it as T).predicate() } ?: createInstance(T::class)
+
+inline fun <reified T : Any, R : T> argThat(matcher: Matcher<R>) = Mockito.argThat<R>(matcher) ?: createInstance(T::class)
 inline fun <reified T : Any> argForWhich(noinline predicate: T.() -> Boolean) = argThat(predicate)
 
 fun atLeast(numInvocations: Int): VerificationMode = Mockito.atLeast(numInvocations)!!
@@ -76,7 +75,7 @@ inline fun <reified T : Any> eq(value: T): T = Mockito.eq(value) ?: createInstan
 fun ignoreStubs(vararg mocks: Any): Array<out Any> = Mockito.ignoreStubs(*mocks)!!
 fun inOrder(vararg mocks: Any): InOrder = Mockito.inOrder(*mocks)!!
 
-inline fun <reified T : Any> isA(): T? = Mockito.isA(T::class.java)
+inline fun <reified T : Any> isA(): T? = Matchers.isA(T::class.java)
 fun <T : Any> isNotNull(): Any = Mockito.isNotNull()
 fun <T : Any> isNull(): Any = Mockito.isNull()
 

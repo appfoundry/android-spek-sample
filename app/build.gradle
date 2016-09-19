@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'de.mobilej.unmock'
 apply plugin: 'kotlin-android'
+apply plugin: 'me.tatarka.retrolambda'
 
 def versionMajor = 0
 def versionMinor = 9
@@ -38,6 +39,10 @@ android {
             testCoverageEnabled true
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     sourceSets {
         androidTest.java.srcDirs += 'src/androidTest/kotlin'
         main.java.srcDirs += 'src/main/kotlin'
@@ -54,9 +59,6 @@ kapt {
 
 unMock {
     keep "android.webkit.URLUtil"
-//    keep "android.util.Patterns"
-//    keep "android.util.JsonWriter"
-//    keep "android.util.JsonScope"
     keepStartingWith "android.util."
 }
 
