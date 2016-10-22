@@ -80,6 +80,7 @@ dependencies {
             libraries.powermock_rule,
             libraries.powermock_junit,
             libraries.junit_platform,
+            libraries.assertj,
             libraries.hamcrest,
             libraries.kotlin_reflect)
     

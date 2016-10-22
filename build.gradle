@@ -32,8 +32,11 @@ buildscript {
         spek_version = "1.0.89"
         junit_platform_version = "1.0.0-M2"
         powermock_version = "1.6.5"
+        assertj_version = "2.5.0"
+
+
         //KOTLIN
-        kotlin_version = "1.0.3"
+        kotlin_version = "1.0.4"
         anko_version = "0.9"
 
         // INFRASTRUCTURE
@@ -79,6 +82,7 @@ buildscript {
                      powermock_agent     : "org.powermock:powermock-module-junit4-rule-agent:$powermock_version",
                      powermock_rule      : "org.powermock:powermock-module-junit4-rule:$powermock_version",
                      powermock_junit     : "org.powermock:powermock-module-junit4:$powermock_version",
+                     assertj             : "org.assertj:assertj-core:$assertj_version",
 
                      // TESTING
                      junit               : "junit:junit:$junit_version",
@@ -114,7 +118,7 @@ buildscript {
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.3'
+        classpath 'com.android.tools.build:gradle:2.2.2'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"

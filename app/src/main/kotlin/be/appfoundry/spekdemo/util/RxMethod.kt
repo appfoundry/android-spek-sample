@@ -5,7 +5,7 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
 fun doSomeRxing(): Observable<Long> =
-        Observable.just(1L).observeOn(AndroidSchedulers.mainThread())
+       B.
 
 
 fun doSomeLongRxing(): Observable<Boolean> =
